@@ -28,8 +28,8 @@ class _LocalFileAttachment(AttachmentItem):
         self.mime_type = mime_type
 
     def load(self):
-        file = open(self.path, 'rb')
-        data = file.read()
+        with open(self.path, 'rb') as file:
+            data = file.read()
 
         if len(data) > MAX_ATTACHMENT_SIZE:
             raise Exception("Attachment too big, max size is 10MB")
